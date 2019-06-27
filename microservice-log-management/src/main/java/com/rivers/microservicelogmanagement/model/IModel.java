@@ -1,4 +1,6 @@
 package com.rivers.microservicelogmanagement.model;
 
-public class IModel {
+import java.io.Serializable;
+
+public interface IModel extends Serializable {
 }
