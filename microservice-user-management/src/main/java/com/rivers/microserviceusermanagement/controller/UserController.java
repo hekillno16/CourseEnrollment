@@ -4,6 +4,7 @@ import com.rivers.microserviceusermanagement.model.Role;
 import com.rivers.microserviceusermanagement.model.User;
 import com.rivers.microserviceusermanagement.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +20,15 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private Environment environment;
+
+    //for Testing Load Balancer
+    @GetMapping("/service/port")
+    public String getPort() {
+        return "User service working on " + environment.getProperty("local.server.port");
+    }
 
     @PostMapping("/service/registration")
     public ResponseEntity<?> register(@RequestBody User user) {
