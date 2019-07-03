@@ -30,7 +30,7 @@ public class LogServiceImpl implements LogService {
             //Cassandra can only update NON primary key value,
             //for prim val, first del then set
             summaryRepository.delete(existSummary);
-            existSummary.setHitCount((existSummary.getHitCount() + 1));
+            existSummary.setHitCount(existSummary.getHitCount() + 1);
             summaryRepository.save(existSummary);
 
         } else {

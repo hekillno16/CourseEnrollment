@@ -33,11 +33,11 @@ public class LogController {
         List<Long> idList = null;
         List<Summary> populars = logService.findPopularCourse();
 
-        if (populars != null) {
+        if (populars != null && !populars.isEmpty()) {
             idList = populars
-                    .parallelStream()
-                    .map(Summary::getCourseId)
-                    .collect(Collectors.toList());
+                        .parallelStream()
+                        .map(Summary::getCourseId)
+                        .collect(Collectors.toList());
         }
 
         return ResponseEntity.ok(idList);
