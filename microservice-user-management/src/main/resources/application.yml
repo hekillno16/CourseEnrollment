@@ -1,3 +1,11 @@
+spring:
+  profiles: container
+  datasource:
+    url: jdbc:mysql://mysql:3306/udm_course?useUnicode=true&useLegacyDatetimeCode=false&serverTimezone=UTC&createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false
+    username: root
+    password: root
+    initialize: true
+
 eureka:
   client:
     serviceUrl:

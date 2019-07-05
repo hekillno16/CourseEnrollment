@@ -1,0 +1,19 @@
+version: '3.0'
+services:  
+  course-mysql:
+    image: mysql:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD=1234
+      - MYSQL_DATABASE=udm_course
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=root
+    ports:
+      - 3306:3306
+    container_name: mysql
+  user-service:
+    build: ./microservice-user-management
+    entrypoint: /wait-for-it.sh mysql:3306 -- java -Djava.security.egd=file:/dev/./urandom -Dspring.profiles.active=container -jar app.jar
+    links:
+      - course-mysql:mysql
+    ports:
+      - 8000:8000
