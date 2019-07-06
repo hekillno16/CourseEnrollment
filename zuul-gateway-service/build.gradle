@@ -6,11 +6,15 @@ plugins {
 apply plugin: 'io.spring.dependency-management'
 
 group = 'com.rivers'
-version = '0.0.1-SNAPSHOT'
+version = '0.0.1'
 sourceCompatibility = '1.8'
 
 repositories {
 	mavenCentral()
+}
+
+jar {
+	archivesBaseName = "zuul-gateway-service"
 }
 
 ext {

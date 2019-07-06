@@ -1,7 +1,15 @@
+spring:
+  profiles: container
+  datasource:
+    url: jdbc:mysql://mysql:3306/udm_course?useUnicode=true&useLegacyDatetimeCode=false&serverTimezone=UTC&createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false
+    username: root
+    password: root
+    initialization-mode: always
+
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://discovery-service:8761/eureka/
     fetchRegistry: true
   instance:
     leaseRenewalIntervalInSeconds: 1
