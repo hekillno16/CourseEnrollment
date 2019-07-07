@@ -62,7 +62,7 @@ export class CourseService {
 
   filterCourses(text: string): Observable<any> {
     return this.http.post(
-      API_URL + 'students',
+      API_URL + 'filter',
       text,
       {
         headers: {

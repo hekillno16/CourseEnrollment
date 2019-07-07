@@ -5,6 +5,7 @@ import { Course } from 'src/app/model/Course';
 import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 import { Transaction } from 'src/app/model/Transaction';
 import { EmitterService } from 'src/app/services/emitter.service';
+import { User } from 'src/app/model/User';
 
 @Component({
   selector: 'app-course-list',
@@ -14,6 +15,7 @@ import { EmitterService } from 'src/app/services/emitter.service';
 export class CourseListComponent implements OnInit {
 
   courses: Array<Course>;
+  currentUser: User;
   dataSource: MatTableDataSource<Course> = new MatTableDataSource();
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: false}) sort: MatSort;
@@ -27,6 +29,7 @@ export class CourseListComponent implements OnInit {
     private route: ActivatedRoute,
     private emitterService: EmitterService
   ) {
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.emitterService.onSearch
       .subscribe({
         next: (event: any) => {
@@ -93,6 +96,10 @@ export class CourseListComponent implements OnInit {
   }
 
   enroll(course: Course) {
+    if(!this.currentUser){
+      this.errorMessage = 'To enroll a course, you should sign in.';
+      return;
+    }
     let transaction = new Transaction();
     transaction.course = course;
     this.courseService.enroll(transaction)

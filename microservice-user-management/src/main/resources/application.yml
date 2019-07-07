@@ -9,7 +9,7 @@ spring:
 eureka:
   client:
     serviceUrl:
-      defualtZone: http://discovery-service:8761/eureka/
+      defaultZone: http://discovery-service:8761/eureka/
   instance:
     leaseRenewalIntervalInSeconds: 1
     leaseExpirationDurationInSeconds: 2

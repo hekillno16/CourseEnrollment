@@ -37,7 +37,10 @@ export class CourseComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       if (params.has('id')) {
         this.courseId = params.get('id');
+
+        this.currentLog = new Log();
         this.currentLog.courseId = this.courseId;
+        
         this.createLog();
         this.showSummary();
         this.findStudents();
